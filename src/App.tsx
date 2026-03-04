@@ -10,12 +10,16 @@ export default function App() {
   const [step, setStep] = useState<'welcome' | 'question' | 'result'>('welcome');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleStart = () => {
     setStep('question');
   };
 
   const handleAnswer = (value: number) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+
     const questionId = QUESTIONS[currentQuestionIndex].id;
     setAnswers(prev => ({ ...prev, [questionId]: value }));
 
@@ -25,6 +29,7 @@ export default function App() {
       } else {
         setStep('result');
       }
+      setIsTransitioning(false);
     }, 400); // Small delay for smooth transition
   };
 

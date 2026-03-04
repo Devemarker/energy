@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
-import html2canvas from 'html2canvas';
+import { toPng } from 'html-to-image';
 import { Download } from 'lucide-react';
 import { calculateScore, getResultLevel, DIMENSIONS } from '../data';
 
@@ -22,15 +22,18 @@ export default function ResultScreen({ answers }: ResultScreenProps) {
 
   const handleDownload = async () => {
     if (resultRef.current) {
-      const canvas = await html2canvas(resultRef.current, {
-        backgroundColor: null,
-        scale: 2,
-      });
-      const dataUrl = canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.download = 'energy-profile.png';
-      link.href = dataUrl;
-      link.click();
+      try {
+        const dataUrl = await toPng(resultRef.current, {
+          cacheBust: true,
+          pixelRatio: 2,
+        });
+        const link = document.createElement('a');
+        link.download = 'energy-profile.png';
+        link.href = dataUrl;
+        link.click();
+      } catch (err) {
+        console.error('Failed to generate image', err);
+      }
     }
   };
 

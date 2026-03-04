@@ -9,6 +9,11 @@ interface QuestionScreenProps {
 
 export default function QuestionScreen({ currentQuestionIndex, onAnswer, answers }: QuestionScreenProps) {
   const question = QUESTIONS[currentQuestionIndex];
+  
+  if (!question) {
+    return null;
+  }
+
   const progress = ((currentQuestionIndex) / QUESTIONS.length) * 100;
 
   return (

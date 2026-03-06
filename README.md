@@ -1,20 +1,61 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 能量图谱测评 (Energy Profile Assessment)
 
-# Run and deploy your AI Studio app
+基于大卫·霍金斯（David R. Hawkins）意识层级理论的个人核心能量频率测评系统。
 
-This contains everything you need to run your app locally.
+## 项目简介
 
-View your app in AI Studio: https://ai.studio/apps/ce206d65-6336-4d38-a895-0b3a2832c59c
+本项目是一个交互式的 Web 应用程序，通过 100 道精心设计的测试题，帮助用户探索和了解自己当下的核心能量频率。测评结果不仅提供整体的能量层级得分（映射至霍金斯 20-700+ 标度），还会生成一个直观的六维雷达图，展示用户在不同生命维度上的能量分布。
 
-## Run Locally
+## 测评维度
 
-**Prerequisites:**  Node.js
+测试涵盖以下 6 个核心维度：
 
+1. **情绪基调 (Emotional Tone)**：面对压力和日常生活的本能情绪反应。
+2. **思维模式 (Thinking Pattern)**：看待世界、他人及自我的核心信念。
+3. **行为驱动 (Behavioral Drive)**：采取行动的内在动机（恐惧驱动 vs. 热爱驱动）。
+4. **社交频率 (Social Frequency)**：在人际关系中的能量交互模式。
+5. **身体感知 (Body Awareness)**：对身体状态的觉察、饮食作息及身心连接。
+6. **灵性觉察 (Spiritual Awareness)**：对生命意义、万物合一及直觉的感知力。
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 核心功能
+
+- **100 题深度测评**：包含正向与反向计分的题目，全面评估内在状态。
+- **动态雷达图**：实时生成个人专属的六维能量分布图。
+- **层级解析与指南**：根据总分（沉睡期、觉醒期、跃升期、合一期）提供深度的状态解析。
+- **专属调频建议**：提供冥想、阅读、精油及行动方面的个性化建议。
+- **海报生成与下载**：一键将测评结果生成精美海报并保存到本地。
+
+## 技术栈
+
+- **前端框架**: React 19
+- **构建工具**: Vite
+- **样式**: Tailwind CSS
+- **动画**: Motion (Framer Motion)
+- **图表**: Recharts (用于绘制六维雷达图)
+- **海报生成**: html-to-image
+
+## 本地运行
+
+1. 安装依赖：
+   ```bash
+   npm install
+   ```
+
+2. 启动开发服务器：
+   ```bash
+   npm run dev
+   ```
+
+3. 构建生产版本：
+   ```bash
+   npm run build
+   ```
+
+## 部署
+
+本项目配置了自动化部署脚本，可一键部署至 GitHub Pages：
+
+```bash
+npm run deploy
+```
+*(注意：使用此命令前，请确保已关联 GitHub 仓库，并在仓库设置中开启 GitHub Pages，Source 选择 `gh-pages` 分支。)*

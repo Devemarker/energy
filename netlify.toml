@@ -8,8 +8,19 @@
   to = "/index.html"
   status = 200
 
-# Cache immutable assets (Vite hashes these) for a year
-# This drastically reduces traffic consumption for returning users
+# Explicitly cache all CSS files for a year
+[[headers]]
+  for = "/**/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Explicitly cache all JS files for a year
+[[headers]]
+  for = "/**/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache Vite's assets folder (covers images, fonts, etc. inside assets)
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -17,11 +28,11 @@
 
 # Do not cache HTML to ensure users always get the latest version of the app
 [[headers]]
-  for = "/*.html"
+  for = "/**/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Do not cache Service Worker files to ensure PWA updates propagate immediately
+# OVERRIDE: Do not cache Service Worker files to ensure PWA updates propagate immediately
 [[headers]]
   for = "/sw.js"
   [headers.values]

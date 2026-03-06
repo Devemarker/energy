@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import WelcomeScreen from './components/WelcomeScreen';
 import QuestionScreen from './components/QuestionScreen';
@@ -6,14 +6,53 @@ import ResultScreen from './components/ResultScreen';
 import Background from './components/Background';
 import { QUESTIONS, calculateScore, getResultLevel } from './data';
 
+const CACHE_KEY = 'energy_profile_progress';
+
 export default function App() {
   const [step, setStep] = useState<'welcome' | 'question' | 'result'>('welcome');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Load cached progress on mount
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed.step && parsed.answers) {
+          setStep(parsed.step);
+          setCurrentQuestionIndex(parsed.currentQuestionIndex || 0);
+          setAnswers(parsed.answers);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load cached progress', e);
+    }
+  }, []);
+
+  // Save progress to cache whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({
+        step,
+        currentQuestionIndex,
+        answers
+      }));
+    } catch (e) {
+      console.error('Failed to save progress to cache', e);
+    }
+  }, [step, currentQuestionIndex, answers]);
+
   const handleStart = () => {
     setStep('question');
+  };
+
+  const handleRestart = () => {
+    setStep('welcome');
+    setCurrentQuestionIndex(0);
+    setAnswers({});
+    localStorage.removeItem(CACHE_KEY);
   };
 
   const handleAnswer = (value: number) => {
@@ -56,7 +95,7 @@ export default function App() {
             answers={answers}
           />
         )}
-        {step === 'result' && <ResultScreen key="result" answers={answers} />}
+        {step === 'result' && <ResultScreen key="result" answers={answers} onRestart={handleRestart} />}
       </AnimatePresence>
     </div>
   );

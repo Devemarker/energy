@@ -2,14 +2,15 @@ import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 import { toPng } from 'html-to-image';
-import { Download } from 'lucide-react';
+import { Download, RotateCcw } from 'lucide-react';
 import { calculateScore, getResultLevel, DIMENSIONS } from '../data';
 
 interface ResultScreenProps {
   answers: Record<number, number>;
+  onRestart?: () => void;
 }
 
-export default function ResultScreen({ answers }: ResultScreenProps) {
+export default function ResultScreen({ answers, onRestart }: ResultScreenProps) {
   const resultRef = useRef<HTMLDivElement>(null);
   const { totalScore, dimensionScores } = calculateScore(answers);
   const resultLevel = getResultLevel(totalScore);
@@ -94,13 +95,24 @@ export default function ResultScreen({ answers }: ResultScreenProps) {
         </div>
       </div>
 
-      <button
-        onClick={handleDownload}
-        className="mt-8 flex items-center gap-2 px-8 py-3 bg-white/20 hover:bg-white/30 border border-white/30 rounded-full transition-all duration-300 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-      >
-        <Download size={20} />
-        <span className="tracking-widest">保存专属海报</span>
-      </button>
+      <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+        <button
+          onClick={handleDownload}
+          className="flex items-center gap-2 px-8 py-3 bg-white/20 hover:bg-white/30 border border-white/30 rounded-full transition-all duration-300 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+        >
+          <Download size={20} />
+          <span className="tracking-widest">保存专属海报</span>
+        </button>
+        {onRestart && (
+          <button
+            onClick={onRestart}
+            className="flex items-center gap-2 px-8 py-3 bg-transparent hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 backdrop-blur-md"
+          >
+            <RotateCcw size={20} />
+            <span className="tracking-widest">重新测评</span>
+          </button>
+        )}
+      </div>
     </motion.div>
   );
 }

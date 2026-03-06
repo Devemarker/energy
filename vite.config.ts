@@ -2,20 +2,56 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
-  
-  // Determine base path for GitHub Pages
-  // When deployed to GitHub Pages, the URL is usually https://<username>.github.io/<repo-name>/
-  // So the base should be '/<repo-name>/'
-  // We can extract this from the GITHUB_REPOSITORY environment variable if available
-  const githubRepo = process.env.GITHUB_REPOSITORY;
-  const basePath = githubRepo ? `/${githubRepo.split('/')[1]}/` : '/';
 
   return {
-    base: basePath,
-    plugins: [react(), tailwindcss()],
+    base: '/',
+    plugins: [
+      react(),
+      tailwindcss(),
+      VitePWA({
+        registerType: 'autoUpdate',
+        injectRegister: 'auto',
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff2}'],
+          maximumFileSizeToCacheInBytes: 5000000,
+          runtimeCaching: [
+            {
+              urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'google-fonts-cache',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                }
+              }
+            },
+            {
+              urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'gstatic-fonts-cache',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                },
+              }
+            }
+          ]
+        },
+        manifest: false
+      })
+    ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },

@@ -51,11 +51,19 @@
    npm run build
    ```
 
-## 部署
+## 部署 (Netlify)
 
-本项目配置了自动化部署脚本，可一键部署至 GitHub Pages：
+本项目已针对 Netlify 托管进行了深度优化，包含静态资源缓存和 PWA 支持，极大减少托管流量消耗。
 
-```bash
-npm run deploy
-```
-*(注意：使用此命令前，请确保已关联 GitHub 仓库，并在仓库设置中开启 GitHub Pages，Source 选择 `gh-pages` 分支。)*
+1. **一键部署**：
+   将代码推送到 GitHub 后，在 Netlify 后台选择该仓库进行部署。
+
+2. **构建设置**：
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+
+3. **缓存与流量优化**：
+   项目内置了 `netlify.toml` 配置文件，自动配置了以下策略：
+   - **SPA 路由回退**：所有路由自动回退到 `index.html`。
+   - **强缓存策略**：对 `/assets/` 目录下的静态资源（JS/CSS/图片）设置了长达一年的强缓存（`Cache-Control: public, max-age=31536000, immutable`）。
+   - **Service Worker (PWA)**：通过 Vite PWA 插件，用户首次访问后会将核心资源缓存在本地，后续访问几乎不消耗服务器流量。

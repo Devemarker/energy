@@ -1,58 +1,613 @@
 export const DIMENSIONS = [
-  { id: 'emotion', name: '情绪基调' },
-  { id: 'thinking', name: '思维模式' },
-  { id: 'drive', name: '行为驱动' },
-  { id: 'social', name: '社交频率' },
+  { id: 'emotion', name: '情绪基调', count: 17 },
+  { id: 'thinking', name: '思维模式', count: 17 },
+  { id: 'drive', name: '行为驱动', count: 17 },
+  { id: 'social', name: '社交频率', count: 17 },
+  { id: 'body', name: '身体感知', count: 16 },
+  { id: 'spirit', name: '灵性觉察', count: 16 },
 ];
 
 export const QUESTIONS = [
-  // 情绪基调 (Emotional Tone)
-  { id: 1, dimension: 'emotion', text: '面对突如其来的困境，我的第一反应通常是恐惧或愤怒。', reverse: true },
-  { id: 2, dimension: 'emotion', text: '即使在压力下，我也能较快恢复内心的平静。', reverse: false },
-  { id: 3, dimension: 'emotion', text: '我经常感到焦虑，担心未来会发生不好的事情。', reverse: true },
-  { id: 4, dimension: 'emotion', text: '我容易因为别人的无心之言而感到受伤或被冒犯。', reverse: true },
-  { id: 5, dimension: 'emotion', text: '我能够坦然接受生活中的不确定性，并保持乐观。', reverse: false },
-  { id: 6, dimension: 'emotion', text: '当事情不如意时，我会长时间陷入自责或懊悔中。', reverse: true },
-  { id: 7, dimension: 'emotion', text: '我经常能感受到发自内心的喜悦和感恩。', reverse: false },
-  { id: 8, dimension: 'emotion', text: '我倾向于压抑自己的负面情绪，而不是表达出来。', reverse: true },
-  { id: 9, dimension: 'emotion', text: '面对他人的成功，我更容易感到嫉妒而不是随喜。', reverse: true },
-  { id: 10, dimension: 'emotion', text: '我相信一切发生皆有利于我，即使是暂时的挫折。', reverse: false },
-
-  // 思维模式 (Thinking Pattern)
-  { id: 11, dimension: 'thinking', text: '我认为世界资源是有限的，必须通过竞争才能获得。', reverse: true },
-  { id: 12, dimension: 'thinking', text: '我倾向于用“非黑即白”、“对错分明”的眼光看待事物。', reverse: true },
-  { id: 13, dimension: 'thinking', text: '我相信宇宙是丰盛的，每个人都能获得自己所需的。', reverse: false },
-  { id: 14, dimension: 'thinking', text: '我经常觉得自己是环境或他人行为的受害者。', reverse: true },
-  { id: 15, dimension: 'thinking', text: '我能看到事物之间的相互联系，理解整体大于部分之和。', reverse: false },
-  { id: 16, dimension: 'thinking', text: '我习惯于关注事物缺失或不足的一面。', reverse: true },
-  { id: 17, dimension: 'thinking', text: '我认为改变是困难且痛苦的，倾向于维持现状。', reverse: true },
-  { id: 18, dimension: 'thinking', text: '我乐于接受新观念，即使它们挑战了我原有的认知。', reverse: false },
-  { id: 19, dimension: 'thinking', text: '我经常用过去的经验来限制对未来的想象。', reverse: true },
-  { id: 20, dimension: 'thinking', text: '我相信自己有能力创造和改变自己的现实。', reverse: false },
-
-  // 行为驱动 (Behavioral Drive)
-  { id: 21, dimension: 'drive', text: '我做事的动力主要来自于对金钱、地位或名誉的渴望。', reverse: true },
-  { id: 22, dimension: 'drive', text: '我经常因为害怕失败或被惩罚而采取行动。', reverse: true },
-  { id: 23, dimension: 'drive', text: '我的行动更多是受到内在灵感和热爱的驱使。', reverse: false },
-  { id: 24, dimension: 'drive', text: '我做决定时，非常在意别人会怎么看我。', reverse: true },
-  { id: 25, dimension: 'drive', text: '我渴望通过自己的工作或行为为世界带来积极的改变。', reverse: false },
-  { id: 26, dimension: 'drive', text: '我经常为了证明自己比别人强而努力拼搏。', reverse: true },
-  { id: 27, dimension: 'drive', text: '我能够顺流而为，而不是总是试图强行控制结果。', reverse: false },
-  { id: 28, dimension: 'drive', text: '我经常感到疲惫，觉得生活是一场需要不断努力的挣扎。', reverse: true },
-  { id: 29, dimension: 'drive', text: '我在做自己喜欢的事情时，经常会进入忘我的“心流”状态。', reverse: false },
-  { id: 30, dimension: 'drive', text: '我的目标通常与服务他人或实现更高的使命感有关。', reverse: false },
-
-  // 社交频率 (Social Frequency)
-  { id: 31, dimension: 'social', text: '在人际交往中，我经常在心里评判或挑剔他人。', reverse: true },
-  { id: 32, dimension: 'social', text: '与人交流后，我经常感到能量被消耗或身心疲惫。', reverse: true },
-  { id: 33, dimension: 'social', text: '我能够真诚地倾听他人，并给予不带偏见的接纳。', reverse: false },
-  { id: 34, dimension: 'social', text: '我倾向于在关系中索取情感支持，而不是主动给予。', reverse: true },
-  { id: 35, dimension: 'social', text: '我的存在往往能让周围的人感到放松和被赋能。', reverse: false },
-  { id: 36, dimension: 'social', text: '我经常卷入他人的戏剧化冲突或八卦中。', reverse: true },
-  { id: 37, dimension: 'social', text: '我愿意原谅曾经伤害过我的人，放下心中的怨恨。', reverse: false },
-  { id: 38, dimension: 'social', text: '我习惯于用讨好他人来维持关系，即使委屈自己。', reverse: true },
-  { id: 39, dimension: 'social', text: '我能与不同背景和观念的人建立深层的连接。', reverse: false },
-  { id: 40, dimension: 'social', text: '我倾向于控制亲密关系中的另一半，以获得安全感。', reverse: true },
+  {
+    "id": 1,
+    "dimension": "emotion",
+    "text": "面对突如其来的困境，我的第一反应通常是恐惧或愤怒。",
+    "reverse": true
+  },
+  {
+    "id": 2,
+    "dimension": "emotion",
+    "text": "即使在压力下，我也能较快恢复内心的平静。",
+    "reverse": false
+  },
+  {
+    "id": 3,
+    "dimension": "emotion",
+    "text": "我经常感到焦虑，担心未来会发生不好的事情。",
+    "reverse": true
+  },
+  {
+    "id": 4,
+    "dimension": "emotion",
+    "text": "我容易因为别人的无心之言而感到受伤或被冒犯。",
+    "reverse": true
+  },
+  {
+    "id": 5,
+    "dimension": "emotion",
+    "text": "我能够坦然接受生活中的不确定性，并保持乐观。",
+    "reverse": false
+  },
+  {
+    "id": 6,
+    "dimension": "emotion",
+    "text": "当事情不如意时，我会长时间陷入自责或懊悔中。",
+    "reverse": true
+  },
+  {
+    "id": 7,
+    "dimension": "emotion",
+    "text": "我经常能感受到发自内心的喜悦和感恩。",
+    "reverse": false
+  },
+  {
+    "id": 8,
+    "dimension": "emotion",
+    "text": "我倾向于压抑自己的负面情绪，而不是表达出来。",
+    "reverse": true
+  },
+  {
+    "id": 9,
+    "dimension": "emotion",
+    "text": "面对他人的成功，我更容易感到嫉妒而不是随喜。",
+    "reverse": true
+  },
+  {
+    "id": 10,
+    "dimension": "emotion",
+    "text": "我相信一切发生皆有利于我，即使是暂时的挫折。",
+    "reverse": false
+  },
+  {
+    "id": 11,
+    "dimension": "emotion",
+    "text": "我经常无缘无故地感到悲伤或低落。",
+    "reverse": true
+  },
+  {
+    "id": 12,
+    "dimension": "emotion",
+    "text": "我能够觉察到自己的情绪起伏，而不被其完全控制。",
+    "reverse": false
+  },
+  {
+    "id": 13,
+    "dimension": "emotion",
+    "text": "我对他人的痛苦有很强的共情能力，甚至会因此感到沉重。",
+    "reverse": true
+  },
+  {
+    "id": 14,
+    "dimension": "emotion",
+    "text": "我能在平凡的日常中体会到深深的宁静。",
+    "reverse": false
+  },
+  {
+    "id": 15,
+    "dimension": "emotion",
+    "text": "我经常因为过去的遗憾而感到痛苦。",
+    "reverse": true
+  },
+  {
+    "id": 16,
+    "dimension": "emotion",
+    "text": "我面对批评时，能够保持情绪稳定并客观分析。",
+    "reverse": false
+  },
+  {
+    "id": 17,
+    "dimension": "emotion",
+    "text": "我容易对生活中的小事感到不耐烦或暴躁。",
+    "reverse": true
+  },
+  {
+    "id": 18,
+    "dimension": "thinking",
+    "text": "我认为世界资源是有限的，必须通过竞争才能获得。",
+    "reverse": true
+  },
+  {
+    "id": 19,
+    "dimension": "thinking",
+    "text": "我倾向于用“非黑即白”、“对错分明”的眼光看待事物。",
+    "reverse": true
+  },
+  {
+    "id": 20,
+    "dimension": "thinking",
+    "text": "我相信宇宙是丰盛的，每个人都能获得自己所需的。",
+    "reverse": false
+  },
+  {
+    "id": 21,
+    "dimension": "thinking",
+    "text": "我经常觉得自己是环境或他人行为的受害者。",
+    "reverse": true
+  },
+  {
+    "id": 22,
+    "dimension": "thinking",
+    "text": "我能看到事物之间的相互联系，理解整体大于部分之和。",
+    "reverse": false
+  },
+  {
+    "id": 23,
+    "dimension": "thinking",
+    "text": "我习惯于关注事物缺失或不足的一面。",
+    "reverse": true
+  },
+  {
+    "id": 24,
+    "dimension": "thinking",
+    "text": "我认为改变是困难且痛苦的，倾向于维持现状。",
+    "reverse": true
+  },
+  {
+    "id": 25,
+    "dimension": "thinking",
+    "text": "我乐于接受新观念，即使它们挑战了我原有的认知。",
+    "reverse": false
+  },
+  {
+    "id": 26,
+    "dimension": "thinking",
+    "text": "我经常用过去的经验来限制对未来的想象。",
+    "reverse": true
+  },
+  {
+    "id": 27,
+    "dimension": "thinking",
+    "text": "我相信自己有能力创造和改变自己的现实。",
+    "reverse": false
+  },
+  {
+    "id": 28,
+    "dimension": "thinking",
+    "text": "我遇到问题时，总是先想到最坏的结果。",
+    "reverse": true
+  },
+  {
+    "id": 29,
+    "dimension": "thinking",
+    "text": "我相信每个挑战背后都隐藏着成长的礼物。",
+    "reverse": false
+  },
+  {
+    "id": 30,
+    "dimension": "thinking",
+    "text": "我经常在脑海中反复回放与他人的争执。",
+    "reverse": true
+  },
+  {
+    "id": 31,
+    "dimension": "thinking",
+    "text": "我能够跳出个人的局限，从更高的视角看待问题。",
+    "reverse": false
+  },
+  {
+    "id": 32,
+    "dimension": "thinking",
+    "text": "我认为人的性格和能力是天生注定，很难改变的。",
+    "reverse": true
+  },
+  {
+    "id": 33,
+    "dimension": "thinking",
+    "text": "我经常对未知的领域充满好奇和探索的欲望。",
+    "reverse": false
+  },
+  {
+    "id": 34,
+    "dimension": "thinking",
+    "text": "我容易陷入过度思考，导致行动瘫痪。",
+    "reverse": true
+  },
+  {
+    "id": 35,
+    "dimension": "drive",
+    "text": "我做事的动力主要来自于对金钱、地位或名誉的渴望。",
+    "reverse": true
+  },
+  {
+    "id": 36,
+    "dimension": "drive",
+    "text": "我经常因为害怕失败或被惩罚而采取行动。",
+    "reverse": true
+  },
+  {
+    "id": 37,
+    "dimension": "drive",
+    "text": "我的行动更多是受到内在灵感和热爱的驱使。",
+    "reverse": false
+  },
+  {
+    "id": 38,
+    "dimension": "drive",
+    "text": "我做决定时，非常在意别人会怎么看我。",
+    "reverse": true
+  },
+  {
+    "id": 39,
+    "dimension": "drive",
+    "text": "我渴望通过自己的工作或行为为世界带来积极的改变。",
+    "reverse": false
+  },
+  {
+    "id": 40,
+    "dimension": "drive",
+    "text": "我经常为了证明自己比别人强而努力拼搏。",
+    "reverse": true
+  },
+  {
+    "id": 41,
+    "dimension": "drive",
+    "text": "我能够顺流而为，而不是总是试图强行控制结果。",
+    "reverse": false
+  },
+  {
+    "id": 42,
+    "dimension": "drive",
+    "text": "我经常感到疲惫，觉得生活是一场需要不断努力的挣扎。",
+    "reverse": true
+  },
+  {
+    "id": 43,
+    "dimension": "drive",
+    "text": "我在做自己喜欢的事情时，经常会进入忘我的“心流”状态。",
+    "reverse": false
+  },
+  {
+    "id": 44,
+    "dimension": "drive",
+    "text": "我的目标通常与服务他人或实现更高的使命感有关。",
+    "reverse": false
+  },
+  {
+    "id": 45,
+    "dimension": "drive",
+    "text": "我经常拖延，直到最后一刻才因为压力而行动。",
+    "reverse": true
+  },
+  {
+    "id": 46,
+    "dimension": "drive",
+    "text": "我即使在没有外部奖励的情况下，也愿意投入精力去创造。",
+    "reverse": false
+  },
+  {
+    "id": 47,
+    "dimension": "drive",
+    "text": "我经常因为觉得“应该做”而去做某事，而不是“想要做”。",
+    "reverse": true
+  },
+  {
+    "id": 48,
+    "dimension": "drive",
+    "text": "我能够坚持长期的目标，即使短期内看不到回报。",
+    "reverse": false
+  },
+  {
+    "id": 49,
+    "dimension": "drive",
+    "text": "我很容易因为遇到一点困难就放弃原定的计划。",
+    "reverse": true
+  },
+  {
+    "id": 50,
+    "dimension": "drive",
+    "text": "我享受过程本身，而不仅仅是关注最终的结果。",
+    "reverse": false
+  },
+  {
+    "id": 51,
+    "dimension": "drive",
+    "text": "我经常为了迎合他人的期望而牺牲自己的真实意愿。",
+    "reverse": true
+  },
+  {
+    "id": 52,
+    "dimension": "social",
+    "text": "在人际交往中，我经常在心里评判或挑剔他人。",
+    "reverse": true
+  },
+  {
+    "id": 53,
+    "dimension": "social",
+    "text": "与人交流后，我经常感到能量被消耗或身心疲惫。",
+    "reverse": true
+  },
+  {
+    "id": 54,
+    "dimension": "social",
+    "text": "我能够真诚地倾听他人，并给予不带偏见的接纳。",
+    "reverse": false
+  },
+  {
+    "id": 55,
+    "dimension": "social",
+    "text": "我倾向于在关系中索取情感支持，而不是主动给予。",
+    "reverse": true
+  },
+  {
+    "id": 56,
+    "dimension": "social",
+    "text": "我的存在往往能让周围的人感到放松和被赋能。",
+    "reverse": false
+  },
+  {
+    "id": 57,
+    "dimension": "social",
+    "text": "我经常卷入他人的戏剧化冲突或八卦中。",
+    "reverse": true
+  },
+  {
+    "id": 58,
+    "dimension": "social",
+    "text": "我愿意原谅曾经伤害过我的人，放下心中的怨恨。",
+    "reverse": false
+  },
+  {
+    "id": 59,
+    "dimension": "social",
+    "text": "我习惯于用讨好他人来维持关系，即使委屈自己。",
+    "reverse": true
+  },
+  {
+    "id": 60,
+    "dimension": "social",
+    "text": "我能与不同背景和观念的人建立深层的连接。",
+    "reverse": false
+  },
+  {
+    "id": 61,
+    "dimension": "social",
+    "text": "我倾向于控制亲密关系中的另一半，以获得安全感。",
+    "reverse": true
+  },
+  {
+    "id": 62,
+    "dimension": "social",
+    "text": "我经常在人群中感到孤独或格格不入。",
+    "reverse": true
+  },
+  {
+    "id": 63,
+    "dimension": "social",
+    "text": "我乐于分享我的资源和知识，帮助他人成长。",
+    "reverse": false
+  },
+  {
+    "id": 64,
+    "dimension": "social",
+    "text": "我很难拒绝他人的不合理要求。",
+    "reverse": true
+  },
+  {
+    "id": 65,
+    "dimension": "social",
+    "text": "我能够在关系中保持清晰的个人边界。",
+    "reverse": false
+  },
+  {
+    "id": 66,
+    "dimension": "social",
+    "text": "我经常嫉妒朋友的成功或好运。",
+    "reverse": true
+  },
+  {
+    "id": 67,
+    "dimension": "social",
+    "text": "我真诚地为他人的成就感到高兴和庆祝。",
+    "reverse": false
+  },
+  {
+    "id": 68,
+    "dimension": "social",
+    "text": "我害怕在他人面前展现真实的自己，担心被拒绝。",
+    "reverse": true
+  },
+  {
+    "id": 69,
+    "dimension": "body",
+    "text": "我经常忽视身体的疲惫信号，强迫自己继续工作。",
+    "reverse": true
+  },
+  {
+    "id": 70,
+    "dimension": "body",
+    "text": "我能够敏锐地察觉到身体各部位的紧张或放松状态。",
+    "reverse": false
+  },
+  {
+    "id": 71,
+    "dimension": "body",
+    "text": "我经常对自己的外貌或身材感到不满和焦虑。",
+    "reverse": true
+  },
+  {
+    "id": 72,
+    "dimension": "body",
+    "text": "我把身体视为神圣的殿堂，并给予它精心的照料。",
+    "reverse": false
+  },
+  {
+    "id": 73,
+    "dimension": "body",
+    "text": "我经常通过暴饮暴食或过度消费来缓解压力。",
+    "reverse": true
+  },
+  {
+    "id": 74,
+    "dimension": "body",
+    "text": "我能够通过深呼吸或运动快速调节身体的能量状态。",
+    "reverse": false
+  },
+  {
+    "id": 75,
+    "dimension": "body",
+    "text": "我经常感到身体沉重、僵硬或缺乏活力。",
+    "reverse": true
+  },
+  {
+    "id": 76,
+    "dimension": "body",
+    "text": "我享受与大自然接触，这能让我的身体感到充沛。",
+    "reverse": false
+  },
+  {
+    "id": 77,
+    "dimension": "body",
+    "text": "我经常因为情绪问题而引发身体的疼痛或不适（如胃痛、头痛）。",
+    "reverse": true
+  },
+  {
+    "id": 78,
+    "dimension": "body",
+    "text": "我倾听身体的直觉，在做决定时会参考身体的感受。",
+    "reverse": false
+  },
+  {
+    "id": 79,
+    "dimension": "body",
+    "text": "我经常熬夜，作息不规律，透支身体的能量。",
+    "reverse": true
+  },
+  {
+    "id": 80,
+    "dimension": "body",
+    "text": "我保持规律的运动习惯，享受身体活动带来的愉悦。",
+    "reverse": false
+  },
+  {
+    "id": 81,
+    "dimension": "body",
+    "text": "我倾向于用药物来压制身体的症状，而不是寻找根本原因。",
+    "reverse": true
+  },
+  {
+    "id": 82,
+    "dimension": "body",
+    "text": "我感恩我的身体每天为我所做的一切。",
+    "reverse": false
+  },
+  {
+    "id": 83,
+    "dimension": "body",
+    "text": "我经常觉得自己的身体是一个负担或麻烦。",
+    "reverse": true
+  },
+  {
+    "id": 84,
+    "dimension": "body",
+    "text": "我能够通过正念饮食，真正品尝和享受食物的滋养。",
+    "reverse": false
+  },
+  {
+    "id": 85,
+    "dimension": "spirit",
+    "text": "我认为物质世界就是一切，不相信任何超越物质的存在。",
+    "reverse": true
+  },
+  {
+    "id": 86,
+    "dimension": "spirit",
+    "text": "我经常感受到一种与万物相连的合一感。",
+    "reverse": false
+  },
+  {
+    "id": 87,
+    "dimension": "spirit",
+    "text": "我对死亡感到深深的恐惧和抗拒。",
+    "reverse": true
+  },
+  {
+    "id": 88,
+    "dimension": "spirit",
+    "text": "我相信生命有一个更高的目的或意义，即使我还没完全明白。",
+    "reverse": false
+  },
+  {
+    "id": 89,
+    "dimension": "spirit",
+    "text": "我认为所谓的“直觉”或“灵感”只是大脑的随机放电，不可靠。",
+    "reverse": true
+  },
+  {
+    "id": 90,
+    "dimension": "spirit",
+    "text": "我经常在静心或冥想中体验到深刻的宁静和洞见。",
+    "reverse": false
+  },
+  {
+    "id": 91,
+    "dimension": "spirit",
+    "text": "我经常觉得人生虚无缥缈，没有任何内在的意义。",
+    "reverse": true
+  },
+  {
+    "id": 92,
+    "dimension": "spirit",
+    "text": "我能够从日常的琐事中看到神圣和奇迹。",
+    "reverse": false
+  },
+  {
+    "id": 93,
+    "dimension": "spirit",
+    "text": "我经常试图用逻辑和理智去解释一切，排斥无法证明的事物。",
+    "reverse": true
+  },
+  {
+    "id": 94,
+    "dimension": "spirit",
+    "text": "我愿意臣服于生命的流动，相信宇宙的安排。",
+    "reverse": false
+  },
+  {
+    "id": 95,
+    "dimension": "spirit",
+    "text": "我经常感到内在的空虚，试图用外在的物质或娱乐来填补。",
+    "reverse": true
+  },
+  {
+    "id": 96,
+    "dimension": "spirit",
+    "text": "我经常体验到无条件的爱，不仅是对特定的人，而是对存在本身。",
+    "reverse": false
+  },
+  {
+    "id": 97,
+    "dimension": "spirit",
+    "text": "我认为宗教或灵性只是人们逃避现实的工具。",
+    "reverse": true
+  },
+  {
+    "id": 98,
+    "dimension": "spirit",
+    "text": "我能够超越小我的欲望，关注更宏大的集体福祉。",
+    "reverse": false
+  },
+  {
+    "id": 99,
+    "dimension": "spirit",
+    "text": "我经常因为执着于特定的结果而感到痛苦。",
+    "reverse": true
+  },
+  {
+    "id": 100,
+    "dimension": "spirit",
+    "text": "我明白真正的自由来自于内心的解脱，而不是外在的条件。",
+    "reverse": false
+  }
 ];
 
 export const OPTIONS = [
@@ -70,6 +625,8 @@ export const calculateScore = (answers: Record<number, number>) => {
     thinking: 0,
     drive: 0,
     social: 0,
+    body: 0,
+    spirit: 0,
   };
 
   QUESTIONS.forEach((q) => {
@@ -80,17 +637,17 @@ export const calculateScore = (answers: Record<number, number>) => {
     dimensionScores[q.dimension] += score;
   });
 
-  // Map total score (40-200) to Hawkins scale (20-700+)
-  // 120 (average 3) -> 200 (Courage)
-  // 40 (average 1) -> 20 (Shame)
-  // 200 (average 5) -> 700 (Enlightenment)
+  // Map total score (100-500) to Hawkins scale (20-700+)
+  // 300 (average 3) -> 200 (Courage)
+  // 100 (average 1) -> 20 (Shame)
+  // 500 (average 5) -> 700 (Enlightenment)
   let hawkinsScore = 0;
-  if (totalScore <= 120) {
-    // 40-120 maps to 20-200
-    hawkinsScore = 20 + ((totalScore - 40) / 80) * 180;
+  if (totalScore <= 300) {
+    // 100-300 maps to 20-200
+    hawkinsScore = 20 + ((totalScore - 100) / 200) * 180;
   } else {
-    // 120-200 maps to 200-700
-    hawkinsScore = 200 + ((totalScore - 120) / 80) * 500;
+    // 300-500 maps to 200-700
+    hawkinsScore = 200 + ((totalScore - 300) / 200) * 500;
   }
 
   return {

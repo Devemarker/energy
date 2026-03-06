@@ -16,7 +16,7 @@ export default function ResultScreen({ answers }: ResultScreenProps) {
 
   const radarData = DIMENSIONS.map(dim => ({
     subject: dim.name,
-    A: dimensionScores[dim.id] * 2, // Scale up for better visualization
+    A: Math.round((dimensionScores[dim.id] / (dim.count * 5)) * 100), // Convert to percentage
     fullMark: 100,
   }));
 

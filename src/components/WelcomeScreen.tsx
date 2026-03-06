@@ -14,7 +14,7 @@ export default function WelcomeScreen({ onStart }: { onStart: () => void }) {
         <p className="text-lg text-white/80 mb-8 font-light leading-relaxed">
           基于大卫·霍金斯意识层级理论，探索你当下的核心能量频率。
           <br /><br />
-          请在安静的环境下，跟随直觉回答接下来的40个问题。
+          请在安静的环境下，跟随直觉回答接下来的100个问题。
         </p>
         <button
           onClick={onStart}
